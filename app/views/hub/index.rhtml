@@ -1,0 +1,10 @@
+We have <%= Address.count %> addresses in the database.  Hoorj!
+
+<% tabular_form_for :address, nil, :url => {:controller => 'addresses', :action => 'add'} do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_field :street_address %>
+  <%= f.text_field :city %>
+  <%= f.text_field :state %>
+  <%= f.text_field :zip %>
+  <tr><td colspan="2"><%= submit_tag 'Add It!' -%></td></tr>
+<% end %>
