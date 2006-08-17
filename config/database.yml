@@ -1,0 +1,16 @@
+login: &login
+  adapter: postgresql
+  username: george
+  password:
+
+development:
+  <<: *login
+  database: george_dev
+
+test:
+  <<: *login
+  database: george_test
+
+production:
+  <<: *login
+  database: george
