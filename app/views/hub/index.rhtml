@@ -1,3 +1,7 @@
+<%= @map.to_html %>
+
+<div id="map"></div>
+
 We have <%= Address.count %> addresses in the database.  Hoorj!
 
 <% tabular_form_for :address, nil, :url => {:controller => 'addresses', :action => 'add'} do |f| %>
