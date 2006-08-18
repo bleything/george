@@ -53,3 +53,15 @@ end
 # Include your application configuration below
 GOOGLE_KEY = 'put_google_api_key_here'
 YAHOO_KEY  = 'put_yahoo_api_key_here'
+
+require 'geocoder_us'
+require 'google_geocode'
+require 'metacarta_geoparser'
+require 'yahoo/geocode'
+
+GEOCODERS = {
+  :geocoderus => GeocoderUs.new,
+  :google     => GoogleGeocode.new(GOOGLE_KEY),
+  :metacarta  => MetaCartaGeoParser.new,
+  :yahoo      => Yahoo::Geocode.new(YAHOO_KEY)
+}
