@@ -1,0 +1,21 @@
+<html>
+<head>
+  <title>George<%= " - #{@subtitle}" if @subtitle -%></title>
+  <%= stylesheet_link_tag 'george' %>
+  <%= javascript_include_tag :defaults %>
+  <%= Cartographer::Gmap::Header.header_for(request) %>
+</head>
+<body>
+  <div id="header">
+    GeoRGE - Geocoding Rightness and Goodness Examiner
+  </div>
+  
+  <div id="container"
+    <%= yield %>
+  </div>
+  
+  <div id="footer">
+    Copyright &copy; 2006 <%= link_to 'EDGE Design', 'http://www.edgedesign.us' -%>.  All rights reserved.  Maps courtesy of <%= link_to 'Google Maps', 'http://maps.google.com' -%>.
+  </div>
+</body>
+</html>
