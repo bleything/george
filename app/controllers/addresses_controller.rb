@@ -8,4 +8,20 @@ class AddressesController < ApplicationController
     
     redirect_to hub_url
   end
+  
+  def map
+    @address = Address.find(params[:address], :include => 'geocodings') rescue nil
+    redirect_to hub_url and return unless @address
+    
+    @map = prepare_map
+    
+    @address.geocodings.each do |code|
+      @map.markers << Cartographer::Gmarker.new(
+        :map         => @map,
+        :name        => code.service,
+        :position    => [code.latitude, code.longitude],
+        :info_window => code.service
+      )
+    end
+  end
 end

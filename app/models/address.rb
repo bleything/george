@@ -33,9 +33,9 @@ class Address < ActiveRecord::Base
         geocoding.confidence = location.score
       end
 
-      geocoding.service    = service.to_s
-      geocoding.longitude  = location.longitude
-      geocoding.latitude   = location.latitude
+      geocoding.service   = service.to_s
+      geocoding.longitude = location.longitude
+      geocoding.latitude  = location.latitude
             
       geocoding.save!
       self.geocodings << geocoding

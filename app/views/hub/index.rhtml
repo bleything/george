@@ -1,8 +1,16 @@
-<%= @map.to_html %>
+<%= render :partial => 'shared/map' %>
 
-<div id="map"></div>
-
-We have <%= Address.count %> addresses in the database.  Hoorj!
+<% if @addresses.size > 0 %>
+<div id="address_list">
+  <h2><%= @addresses.size %> addresses in database</h2>
+  
+  <ul>
+    <% @addresses.each do |address| %>
+      <li><%= link_to address.name, map_url(:address => address.id) -%></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
 <% tabular_form_for :address, nil, :url => {:controller => 'addresses', :action => 'add'} do |f| %>
   <%= f.text_field :name %>
