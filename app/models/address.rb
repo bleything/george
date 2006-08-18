@@ -2,9 +2,14 @@ class Address < ActiveRecord::Base
   has_many :geocodings, :dependent => :destroy
 
   validates_presence_of :name, :street_address, :city, :state, :zip
+  
+  def regeocode!
+    self.geocodings.each {|g| g.destroy}
+    self.geocode!
+    self.reload
+  end    
 
   def geocode!
-    logger.warn "****************************************************** entered geocode!"
     GEOCODERS.each do |service, coder|
       begin
         location = coder.locate(self)
