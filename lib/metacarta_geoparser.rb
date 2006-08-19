@@ -65,8 +65,8 @@ class MetaCartaGeoParser < RCRest
       location.hierarchy = l.attributes['Hierarchy']
 
       coords = l.elements['Centroid/gml:Point/gml:coordinates'].text.split ','
-      location.latitude = coords.first.to_f
-      location.longitude = coords.last.to_f
+      location.latitude = coords.last.to_f
+      location.longitude = coords.first.to_f
 
       confidence = l.elements['Confidence']
       location.confidence = confidence.text.to_f if confidence
