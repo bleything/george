@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     # set up defaults
     map.controls = [:type, :large]
     map.type = :hybrid
-    map.center = [39.70718665682654, -94.482421875]
+    map.center = [39.134557, -95.537109]
     map.zoom = 4
     
     # override defaults with passed-in options
