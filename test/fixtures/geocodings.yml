@@ -1,5 +1,31 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
-  id: 1
-another:
-  id: 2
+# Centroid geocodings come from the example at http://www.saltspring.com/brochmann/math/centroid/centroid.html
+centroid_a:
+  id:         1
+  address_id: 1
+  service:    centroid_a
+  longitude:  0
+  latitude:   0
+centroid_b:
+  id:         2
+  address_id: 1
+  service:    centroid_b
+  longitude:  6
+  latitude:   13
+centroid_c:
+  id:         3
+  address_id: 1
+  service:    centroid_c
+  longitude:  15
+  latitude:   11
+centroid_d:
+  id:         4
+  address_id: 1
+  service:    centroid_d
+  longitude:  16
+  latitude:   6
+centroid_e:
+  id:         5
+  address_id: 1
+  service:    centroid_e
+  longitude:  14
+  latitude:   2

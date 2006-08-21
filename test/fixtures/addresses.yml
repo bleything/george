@@ -1,5 +1,8 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-first:
+centroid:
   id: 1
-another:
-  id: 2
+  name: example address
+  street_address: 123 anywhere st.
+  city: anytown
+  state: or
+  zip: 12345
