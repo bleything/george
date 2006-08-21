@@ -52,8 +52,6 @@ class Address < ActiveRecord::Base
   end
   
   def centroid
-    triangles = combine(self.geocodings, 3)
-    
     areas     = []
     centroids = []
     ratios    = []
@@ -86,5 +84,18 @@ class Address < ActiveRecord::Base
     end
     
     return [centroid_latitude, centroid_longitude]
+  end
+  
+  def triangles
+    out = []
+    
+    codings = self.geocodings.dup
+    root = codings.shift
+    
+    while codings.size >= 2 do
+      out << [root, codings.shift, codings[0]]
+    end
+    
+    return out
   end
 end
