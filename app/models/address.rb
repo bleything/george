@@ -63,11 +63,11 @@ class Address < ActiveRecord::Base
       # latitude is y coord
       
       # triangle area is [(x2 - x1)(y3 - y1) - (x3 - x1)(y2 - y1)] / 2
-      areas << ((triangle[1].longitude - triangle[0].longitude) * (triangle[2].latitude - triangle[0].latitude)-(triangle[2].longitude - triangle[0].longitude) * (triangle[1].latitude - triangle[0].latitude)) / 2
+      areas << ((triangle[1].long - triangle[0].long) * (triangle[2].lat - triangle[0].lat)-(triangle[2].long - triangle[0].long) * (triangle[1].lat - triangle[0].lat)) / 2
       
       # centroid is x = (x1 + x2 + x3) / 3, y = (y1 + y2 + y3) / 3
-      centroids << [(triangle[0].longitude + triangle[1].longitude + triangle[2].longitude) / 3,
-                    (triangle[0].latitude + triangle[1].latitude + triangle[2].latitude) / 3
+      centroids << [(triangle[0].long + triangle[1].long + triangle[2].long) / 3,
+                    (triangle[0].lat + triangle[1].lat + triangle[2].lat) / 3
                    ]
     end
     

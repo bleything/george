@@ -19,7 +19,7 @@ class AddressesController < ApplicationController
       @map.markers << Cartographer::Gmarker.new(
         :map         => @map,
         :name        => code.service,
-        :position    => [code.latitude, code.longitude],
+        :position    => [code.lat, code.long],
         :info_window => code.service
       )
     end
