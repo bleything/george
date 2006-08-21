@@ -49,5 +49,42 @@ class Address < ActiveRecord::Base
   
   def to_s
     return [self.street_address, self.city, self.state, self.zip].join(', ')
-  end 
+  end
+  
+  def centroid
+    triangles = combine(self.geocodings, 3)
+    
+    areas     = []
+    centroids = []
+    ratios    = []
+    
+    triangles.each do |triangle|
+      # longitude is x coord
+      # latitude is y coord
+      
+      # triangle area is [(x2 - x1)(y3 - y1) - (x3 - x1)(y2 - y1)] / 2
+      areas << ((triangle[1].longitude - triangle[0].longitude) * (triangle[2].latitude - triangle[0].latitude)-(triangle[2].longitude - triangle[0].longitude) * (triangle[1].latitude - triangle[0].latitude)) / 2
+      
+      # centroid is x = (x1 + x2 + x3) / 3, y = (y1 + y2 + y3) / 3
+      centroids << [(triangle[0].longitude + triangle[1].longitude + triangle[2].longitude) / 3,
+                    (triangle[0].latitude + triangle[1].latitude + triangle[2].latitude) / 3
+                   ]
+    end
+    
+    polygon_area = areas.inject{|sum, area| sum + area}
+    
+    areas.each do |area|
+      ratios << area/polygon_area
+    end
+    
+    centroid_longitude = 0
+    centroid_latitude  = 0
+    
+    centroids.each_with_index do |centroid, index|
+      centroid_longitude += centroid[0] * ratios[index]
+      centroid_latitude  += centroid[1] * ratios[index]
+    end
+    
+    return [centroid_latitude, centroid_longitude]
+  end
 end

@@ -54,6 +54,7 @@ end
 GOOGLE_KEY = 'put_google_api_key_here'
 YAHOO_KEY  = 'put_yahoo_api_key_here'
 
+require 'combinatorics'
 require 'geocoder_us'
 require 'google_geocode'
 require 'metacarta_geoparser'

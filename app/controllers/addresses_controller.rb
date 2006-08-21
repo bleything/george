@@ -23,5 +23,8 @@ class AddressesController < ApplicationController
         :info_window => code.service
       )
     end
+    
+    @map.center = @address.centroid
+    @map.zoom   = 13
   end
 end
