@@ -29,3 +29,21 @@ centroid_e:
   service:    centroid_e
   longitude:  14
   latitude:   2
+single_point:
+  id:         6
+  address_id: 2
+  service:    single point
+  longitude:  30
+  latitude:   50
+two_points_a:
+  id:         7
+  address_id: 3
+  service:    two points
+  longitude:  10
+  latitude:   50
+two_points_b:
+  id:         8
+  address_id: 3
+  service:    two points
+  longitude:  20
+  latitude:   60

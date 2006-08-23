@@ -52,6 +52,19 @@ class Address < ActiveRecord::Base
   end
   
   def centroid
+    return [0,0] if self.geocodings.size == 0
+    
+    # center of a single point is that point
+    return [self.geocodings[0].lat, self.geocodings[0].long] if self.geocodings.size == 1
+    
+    # center of two points is the average of their coordinates
+    if self.geocodings.size == 2
+      centroid_latitude  = (self.geocodings[0].lat + self.geocodings[1].lat) / 2
+      centroid_longitude = (self.geocodings[0].long + self.geocodings[1].long) / 2
+      
+      return [ centroid_latitude, centroid_longitude ]
+    end
+
     areas     = []
     centroids = []
     ratios    = []
