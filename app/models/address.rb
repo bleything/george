@@ -1,5 +1,6 @@
 class Address < ActiveRecord::Base
-  has_many :geocodings, :dependent => :destroy
+  has_many :geocodings,        :dependent => :destroy
+  has_many :calculated_points, :dependent => :destroy
 
   validates_presence_of :name, :street_address, :city, :state, :zip
   
@@ -38,7 +39,7 @@ class Address < ActiveRecord::Base
         geocoding.confidence = location.score
       end
 
-      geocoding.service   = service.to_s
+      geocoding.name      = service.to_s
       geocoding.longitude = location.longitude
       geocoding.latitude  = location.latitude
             

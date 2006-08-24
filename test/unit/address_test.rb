@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class AddressTest < Test::Unit::TestCase
-  fixtures :addresses, :geocodings
+  fixtures :addresses, :locations
 
   # centroid test is from the example given at http://www.saltspring.com/brochmann/math/centroid/centroid.html
   def test_centroid

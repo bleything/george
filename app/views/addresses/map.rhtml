@@ -16,9 +16,9 @@
     </thead>
   
     <tbody>
-      <% @address.geocodings.sort_by {|g| g.service}.each_with_index do |code, i| %>
+      <% @address.geocodings.sort_by {|g| g.name}.each_with_index do |code, i| %>
         <tr<%= ' class="even"' if (i % 2 == 0) -%>>
-          <td class="first"><%= code.service -%></td>
+          <td class="first"><%= code.name -%></td>
           <td><%= code.coordinates -%></td>
           <td><%= code.score %></td>
           <td><%= @map.markers.detect {|m| m.name == code.service}.infowindow_link('open info window') -%></td>
