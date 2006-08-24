@@ -2,10 +2,8 @@ class AddressesController < ApplicationController
   def add
     redirect_to hub_url unless request.post?
     
-    addr = Address.new(params[:address])
-    addr.geocode!
-    addr.save
-    
+    addr = Address.new(params[:address]).save
+
     redirect_to hub_url
   end
   
@@ -18,7 +16,7 @@ class AddressesController < ApplicationController
     @address.geocodings.each do |code|
       info_window = []
       info_window << "<strong>#{code.name}</strong>"
-      info_window << "(#{code.coordinates})"
+      info_window << "(#{code.coords_as_string})"
       info_window << "Score: #{code.score}"
   
       @map.markers << Cartographer::Gmarker.new(
@@ -29,7 +27,7 @@ class AddressesController < ApplicationController
       )
     end
     
-    @map.center = @address.centroid
-    @map.zoom   = 13
+    @map.center = @address.centroid.coordinates
+    @map.zoom   = 14
   end
 end

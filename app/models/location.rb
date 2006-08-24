@@ -8,6 +8,10 @@ class Location < ActiveRecord::Base
   end
   
   def coordinates
+    [self.lat, self.long]
+  end
+  
+  def coords_as_string
     sprintf( "%0.4f, %0.4f", self.lat, self.long )
   end
 end

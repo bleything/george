@@ -4,7 +4,7 @@
   <table id="address_details" cellspacing="0">
     <thead>
       <tr>
-        <td colspan="4"><%= @address.geocodings.size %> geocodings</td>
+        <td colspan="4"><%= pluralize @address.geocodings.size, 'geocodings' -%></td>
       </tr>
     
       <tr>
@@ -19,9 +19,27 @@
       <% @address.geocodings.sort_by {|g| g.name}.each_with_index do |code, i| %>
         <tr<%= ' class="even"' if (i % 2 == 0) -%>>
           <td class="first"><%= code.name -%></td>
-          <td><%= code.coordinates -%></td>
+          <td><%= code.coords_as_string -%></td>
           <td><%= code.score %></td>
-          <td><%= @map.markers.detect {|m| m.name == code.service}.infowindow_link('open info window') -%></td>
+          <td><%= @map.markers.detect {|m| m.name == code.name}.infowindow_link('open info window') -%></td>
+        </tr>        
+      <% end %>
+      
+      <thead>
+        <tr>
+          <td colspan="4"><%= pluralize @address.calculated_points.size, 'calculated point' -%></td>
+        </tr>
+        
+        <tr>
+          <td colspan="2">Type</td>
+          <td colspan="2">Coordinates</td>
+        </tr>
+      </thead>
+      
+      <% @address.calculated_points.sort_by {|p| p.name}.each_with_index do |point, i| %>
+        <tr<%= ' class="even"' if (i % 2 == 0) -%>>
+          <td colspan="2" class="first"><%= point.name -%></td>
+          <td colspan="2"><%= point.coords_as_string -%></td>
         </tr>
       <% end %>
     </tbody>
