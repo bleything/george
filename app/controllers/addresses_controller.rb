@@ -22,7 +22,7 @@ class AddressesController < ApplicationController
       @map.markers << Cartographer::Gmarker.new(
         :map         => @map,
         :name        => code.name,
-        :position    => [code.lat, code.long],
+        :position    => code.coordinates,
         :info_window => info_window.join("<br />\n")
       )
     end

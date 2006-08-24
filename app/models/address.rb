@@ -31,6 +31,10 @@ class Address < ActiveRecord::Base
     return self.calculated_points.detect {|p| p.name == 'Centroid'}
   end
   
+  def weighted_average
+    return self.calculated_points.detect {|p| p.name == 'Weighted Average'}
+  end
+
   private
   def fetch_geocodes
     out = []
@@ -75,7 +79,27 @@ class Address < ActiveRecord::Base
   end
 
   def calculate_points
-    return [find_centroid]
+    return [find_centroid, find_weighted_average]
+  end
+  
+  def find_weighted_average
+    return if self.geocodings.size == 0
+    
+    loc = CalculatedPoint.new
+    loc.name = 'Weighted Average'
+    
+    lat = 0
+    long = 0
+    
+    self.geocodings.each do |g|
+      lat  += g.lat
+      long += g.long
+    end
+      
+    loc.latitude  = lat  / self.geocodings.size
+    loc.longitude = long / self.geocodings.size
+    
+    return loc
   end
 
   def find_centroid
