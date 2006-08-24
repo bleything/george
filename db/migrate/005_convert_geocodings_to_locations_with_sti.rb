@@ -4,7 +4,7 @@ class ConvertGeocodingsToLocationsWithSti < ActiveRecord::Migration
     
     add_column :locations, :type, :string
     
-    Location.find_all.each {|l| l.type = 'geocoding' ; l.save }
+    Location.find_all.each {|l| l.type = 'Geocoding' ; l.save }
   end
 
   def self.down
