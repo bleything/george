@@ -16,11 +16,16 @@ class AddressesController < ApplicationController
     @map = prepare_map
     
     @address.geocodings.each do |code|
+      info_window = []
+      info_window << "<strong>#{code.service}</strong>"
+      info_window << "(#{code.coordinates})"
+      info_window << "Score: #{code.score}"
+  
       @map.markers << Cartographer::Gmarker.new(
         :map         => @map,
         :name        => code.service,
         :position    => [code.lat, code.long],
-        :info_window => code.service
+        :info_window => info_window.join("<br />\n")
       )
     end
     
