@@ -1,5 +1,9 @@
 <center>
-  <h3><%= @address.name -%></h3>
+  <p>
+    <b><%= @address.name -%></b><br />
+    <%= @address.street_address %><br />
+    <%= "#{@address.city}, #{@address.state} #{@address.zip}" %><br />
+  </p>
 
   <table id="address_details" cellspacing="0">
     <thead>
