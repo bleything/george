@@ -21,7 +21,23 @@ class Address < ActiveRecord::Base
     self.calculated_points << calculate_points
     self.save!
     self.reload
-  end    
+  end
+  
+  def lat
+    self.latitude.to_f
+  end
+  
+  def long
+    self.longitude.to_f
+  end
+  
+  def coordinates
+    [self.lat, self.long]
+  end
+  
+  def coords_as_string
+    sprintf( "%0.4f, %0.4f", self.lat, self.long )
+  end
   
   def to_s
     return [self.street_address, self.city, self.state, self.zip].join(', ')

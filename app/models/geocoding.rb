@@ -2,7 +2,15 @@ class Geocoding < Location
   belongs_to :address
   
   def calculate_score!
-    avg = self.address.weighted_average
+    avg = nil
+
+    if self.address.latitude and self.address.longitude
+      avg = Location.new
+      avg.latitude = self.address.latitude
+      avg.longitude = self.address.longitude
+    else
+      avg = self.address.weighted_average
+    end
     
     lat_delta  = self.lat  - avg.lat
     long_delta = self.long - avg.long

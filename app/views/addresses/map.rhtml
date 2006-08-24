@@ -4,6 +4,13 @@
     <%= @address.street_address %><br />
     <%= "#{@address.city}, #{@address.state} #{@address.zip}" %><br />
   </p>
+  
+  <p>
+    <% if @address.latitude and @address.longitude %>
+    <b>Known Coordinates</b><br />
+    <%= @address.coords_as_string %>
+    <% end %>
+  </p>
 
   <table id="address_details" cellspacing="0">
     <thead>
