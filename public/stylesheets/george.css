@@ -58,3 +58,32 @@ div#map {
   
   border: 1px #414243 solid;
 }
+
+table#address_details {
+  width: 65%;
+	border: 1px solid #414243;
+}
+
+table#address_details tr td {
+	padding: 3px 8px;
+	background: #dbdfee;
+}
+
+table#address_details tbody td {
+	border-left: 1px solid #b5b5b5;
+}
+
+table#address_details tbody td.first {
+  border-left: none;
+}
+
+table#address_details thead td{
+	color: #dbdfee;
+	background-color: #414243;
+	font-weight: bold;
+	text-align: center;
+}
+
+table#address_details tbody tr.even td{
+	background: #eee;
+}

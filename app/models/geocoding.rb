@@ -8,4 +8,12 @@ class Geocoding < ActiveRecord::Base
   def long
     self.longitude.to_f
   end
+  
+  def coordinates
+    sprintf( "%0.4f, %0.4f", self.lat, self.long )
+  end
+  
+  def score
+    "not implemented"
+  end
 end

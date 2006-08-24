@@ -1,1 +1,29 @@
-<h3><%= @address.name -%></h3>
+<center>
+  <h3><%= @address.name -%></h3>
+
+  <table id="address_details" cellspacing="0">
+    <thead>
+      <tr>
+        <td colspan="4"><%= @address.geocodings.size %> geocodings</td>
+      </tr>
+    
+      <tr>
+        <td>Service</td>
+        <td>Coordinates</td>
+        <td>Score</td>
+        <td>Function</td>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @address.geocodings.sort_by {|g| g.service}.each_with_index do |code, i| %>
+        <tr<%= ' class="even"' if (i % 2 == 0) -%>>
+          <td class="first"><%= code.service -%></td>
+          <td><%= code.coordinates -%></td>
+          <td><%= code.score %></td>
+          <td><%= @map.markers.detect {|m| m.name == code.service}.infowindow_link('open info window') -%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</center>
