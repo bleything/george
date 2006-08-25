@@ -9,6 +9,10 @@ class Address < ActiveRecord::Base
     self.calculated_points << calculate_points
   end
   
+  def after_create
+    self.geocodings.each(&:calculate_score!)
+  end
+  
   def regeocode!
     self.geocodings.each {|g| g.destroy}
     self.geocodings << fetch_geocodes
