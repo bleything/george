@@ -2,9 +2,10 @@ class AddressesController < ApplicationController
   def add
     redirect_to hub_url unless request.post?
     
-    addr = Address.new(params[:address]).save
+    addr = Address.new(params[:address])
+    addr.save
 
-    redirect_to hub_url
+    redirect_to map_url :id => addr.reload.id
   end
   
   def map
